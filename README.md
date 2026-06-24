@@ -1,187 +1,100 @@
-# 💰 Expense Tracker App
+# 💰 ExpenseIQ — Smart Expense Tracker
 
-A full-stack **Expense Tracker Application** built using **Spring Boot**, **React**, and **MySQL** to help users manage and track their daily expenses efficiently.
+A full-stack expense tracking application built with **Spring Boot**, **React**, and **MySQL**. Features real-time spending analytics, category-wise breakdowns, and interactive charts.
+
+🔗 **[Live Demo](https://expense-tracker-jb09xmmgw-vaishnavi-patils-projects-fb2312ff.vercel.app/)**
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-* ➕ Add new expenses
-* 📋 View all expenses
-* 🏷️ Categorize expenses
-* 📅 Monthly expense summary
-* 🔍 Filter expenses by category and date range
-* 🔗 REST API integration
-* 📱 Responsive user interface
+- 📊 **Dashboard** — Monthly overview with pie chart and recent transactions
+- ➕ **Add Expenses** — Form with validation, category selection, and date picker
+- 📋 **Expense List** — Search, filter by category, delete entries
+- 📈 **Monthly Summary** — Bar chart with category breakdown and percentages
+- 🌐 **REST API** — 7 endpoints powering the full frontend
+- ☁️ **Deployed** — Live on Vercel + Render + Aiven MySQL
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
-
-* Java
-* Spring Boot
-* Spring Data JPA
-* MySQL
-* Maven
-
-### Frontend
-
-* React
-* Vite
-* Axios
-* React Router DOM
-* CSS
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, Vite, Tailwind CSS v4, Recharts |
+| Backend | Java 24, Spring Boot 3.5, Spring Data JPA |
+| Database | MySQL 8.0 (Aiven cloud) |
+| Deployment | Vercel (frontend), Render (backend) |
+| Tools | Docker, GitHub, Maven, Postman |
 
 ---
 
-## 📂 Project Structure
+## 🏗️ Architecture
 
-```bash
-expense-tracker-app/
-│
+```
+React Frontend (Vercel)
+        │  axios HTTP calls
+        ▼
+Spring Boot REST API (Render :8080)
+        │  Spring Data JPA
+        ▼
+MySQL Database (Aiven cloud)
+```
+
+---
+
+## 📁 Project Structure
+
+```
+expense-tracker/
 ├── backend/
-│   ├── src/
-│   ├── pom.xml
-│   └── application.properties
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
-└── README.md
-```
-
----
-
-## ⚙️ Backend Setup
-
-### 1. Navigate to Backend
-
-```bash
-cd backend
-```
-
-### 2. Configure Database
-
-Update your MySQL credentials in:
-
-```properties
-src/main/resources/application.properties
-```
-
-Example:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/expense_tracker
-spring.datasource.username=root
-spring.datasource.password=your_password
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-### 3. Run the Backend
-
-Using Maven Wrapper:
-
-```bash
-./mvnw spring-boot:run
-```
-
-Or Maven:
-
-```bash
-mvn spring-boot:run
-```
-
-Backend will start on:
-
-```bash
-http://localhost:8080
-```
-
----
-
-## 🎨 Frontend Setup
-
-### 1. Navigate to Frontend
-
-```bash
-cd frontend
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Start Development Server
-
-```bash
-npm run dev
-```
-
-Frontend will start on:
-
-```bash
-http://localhost:5173
+│   └── src/main/java/com/vaishnavi/expense_tracker/
+│       ├── controller/
+│       ├── model/
+│       └── repository/
+└── frontend/
+    └── src/
+        ├── pages/
+        ├── services/
+        └── App.jsx
 ```
 
 ---
 
 ## 🔗 API Endpoints
 
-### Get All Expenses
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/expenses` | Get all expenses |
+| POST | `/expenses` | Add new expense |
+| PUT | `/expenses/{id}` | Update expense |
+| DELETE | `/expenses/{id}` | Delete expense |
+| GET | `/expenses/category/{category}` | Filter by category |
+| GET | `/expenses/range?start=&end=` | Filter by date range |
+| GET | `/expenses/summary/{year}/{month}` | Monthly summary |
 
-```http
-GET /api/expenses
+---
+
+## ⚙️ Running Locally
+
+### Backend
+```bash
+cd backend
+set DB_PASSWORD=your_mysql_password
+.\mvnw.cmd spring-boot:run
 ```
 
-### Add Expense
-
-```http
-POST /api/expenses
-```
-
-### Delete Expense
-
-```http
-DELETE /api/expenses/{id}
-```
-
-### Update Expense
-
-```http
-PUT /api/expenses/{id}
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
 
----
-
-## 📈 Future Enhancements
-
-* 🔐 JWT Authentication & Authorization
-* 📊 Expense Analytics Dashboard
-* 💹 Interactive Charts & Graphs
-* 🎯 Budget Planning
-* 📄 Export Reports (PDF/Excel)
-* 🌙 Dark Mode
-* ☁️ Cloud Deployment (AWS/Azure)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push the branch
-5. Open a Pull Request
-
+## 🔮 Upcoming
+- JWT Authentication (multi-user)
+- CSV export
+- AI expense categorization (Gemini API)
+- GitHub Actions CI/CD
