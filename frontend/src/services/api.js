@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'https://expense-tracker-uqw6.onrender.com'
 
 const api = axios.create({
     baseURL: BASE_URL,
@@ -9,7 +9,6 @@ const api = axios.create({
     }
 })
 
-// Expenses
 export const getAllExpenses = () => api.get('/expenses')
 export const addExpense = (expense) => api.post('/expenses', expense)
 export const updateExpense = (id, expense) => api.put(`/expenses/${id}`, expense)
